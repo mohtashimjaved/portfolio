@@ -7,7 +7,7 @@ export const projects = [
     image: "/assets/projects/portfolio.webp",
     tech: ["React", "Tailwind", "Framer Motion"],
     github: "https://github.com/mohtashimjaved/portfolio",
-    demo: "https://your-portfolio-demo.com",
+    demo: "https://mohtashimjaved-portfolio.netlify.app",
   },
   {
     id: 2,
