@@ -4,7 +4,7 @@ export const projects = [
     id: 1,
     title: "Portfolio Website",
     description: "A modern personal portfolio website using React, Tailwind CSS, and Framer Motion.",
-    image: ".././public/assets/projects/portfolio.webp",
+    image: "/assets/projects/portfolio.webp",
     tech: ["React", "Tailwind", "Framer Motion"],
     github: "https://github.com/mohtashimjaved/portfolio",
     demo: "https://your-portfolio-demo.com",
