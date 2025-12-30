@@ -1,51 +1,164 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function Contact() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      setError("Please fill in all fields.");
-      return;
+    setLoading(true);
+
+    const formData = new FormData(e.target);
+
+    const response = await fetch(
+      "https://formspree.io/f/meeqwvwk",
+      {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+
+    if (response.ok) {
+      setSuccess(true);
+      e.target.reset();
+      setTimeout(() => setSuccess(false), 4000);
+    } else {
+      alert("Something went wrong. Please try again.");
     }
-    setError("");
-    console.log(form);
-  }
+
+    setLoading(false);
+  };
 
   return (
-    <section className="py-24 max-w-lg">
-      <h2 className="text-3xl font-semibold mb-8">Let’s Connect</h2>
+    <section className="min-h-screen px-4 sm:px-6 md:px-10 py-20 md:py-28">
+      <div className="max-w-6xl mx-auto">
 
-      <form onSubmit={handleSubmit} className="space-y-5 glass p-6 rounded-2xl">
-        {error && <p className="text-red-400 text-sm">{error}</p>}
+        {/* HEADING */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+            Contact Me
+          </h2>
+          <p className="text-gray-400 max-w-xl">
+            Feel free to reach out for collaborations or freelance work.
+          </p>
+        </motion.div>
 
-        {["name", "email"].map(field => (
-          <input
-            key={field}
-            placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-            className="w-full p-3 rounded bg-bg border border-white/10 focus:border-accent outline-none transition"
-            value={form[field]}
-            onChange={e => setForm({ ...form, [field]: e.target.value })}
-          />
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
 
-        <textarea
-          placeholder="Message"
-          className="w-full p-3 rounded bg-bg border border-white/10 focus:border-accent outline-none transition h-32"
-          value={form.message}
-          onChange={e => setForm({ ...form, message: e.target.value })}
-        />
+          {/* FORM */}
+          <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="space-y-6"
+          >
+            <input type="hidden" name="_subject" value="New Contact Message" />
 
-        <button className="w-full bg-accent py-3 rounded font-medium hover:opacity-90 transition">
-          Send Message
-        </button>
-      </form>
+            <div>
+              <label className="block text-sm text-gray-400 mb-2">
+                Your Name
+              </label>
+              <input
+                name="name"
+                required
+                className="w-full h-12 px-4 rounded-xl bg-[#27272c] text-white
+                outline-none focus:ring-2 focus:ring-accent"
+                placeholder="Enter Your Name"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm text-gray-400 mb-2">
+                Email Address
+              </label>
+              <input
+                name="email"
+                type="email"
+                required
+                className="w-full h-12 px-4 rounded-xl bg-[#27272c] text-white
+                outline-none focus:ring-2 focus:ring-accent"
+                placeholder="Enter Your Email"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm text-gray-400 mb-2">
+                Message
+              </label>
+              <textarea
+                name="message"
+                rows="5"
+                required
+                className="w-full px-4 py-3 rounded-xl bg-[#27272c] text-white
+                outline-none resize-none focus:ring-2 focus:ring-accent"
+                placeholder="Write Your Message ..."
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="h-12 px-8 rounded-xl bg-accent text-black
+              font-medium transition hover:opacity-90 disabled:opacity-50"
+            >
+              {loading ? "Sending..." : "Send Message"}
+            </button>
+
+            {success && (
+              <p className="text-green-400 text-sm">
+                Message sent successfully!
+              </p>
+            )}
+          </motion.form>
+
+          {/* CONTACT INFO */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="space-y-10"
+          >
+            <Info icon={<Phone />} label="Phone" value="+92 317 4159475" />
+            <Info
+              icon={<Mail />}
+              label="Email"
+              value="hafizmohtashim3157@gmail.com"
+            />
+            <Info
+              icon={<MapPin />}
+              label="Address"
+              value="Karachi, Pakistan"
+            />
+          </motion.div>
+
+        </div>
+      </div>
     </section>
+  );
+}
+
+function Info({ icon, label, value }) {
+  return (
+    <div className="flex items-start gap-4">
+      <div className="h-12 w-12 rounded-xl bg-[#27272c]
+      flex items-center justify-center text-accent">
+        {icon}
+      </div>
+      <div>
+        <p className="text-gray-400 text-sm">{label}</p>
+        <p className="text-white font-medium break-all">{value}</p>
+      </div>
+    </div>
   );
 }
