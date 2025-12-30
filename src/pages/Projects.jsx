@@ -11,7 +11,7 @@ import { projects } from "../data/projects";
 
 export default function Projects() {
   return (
-    <section className="min-h-screen shadow-black shadow-2xl bg-bg rounded-2xl px-4 md:px-10 py-25">
+    <section className="min-h-screen rounded-2xl px-4 md:px-10 py-25">
       {/* Heading */}
       <div className="text-center mb-14">
         <h2 className="text-4xl md:text-5xl font-bold text-white">
@@ -45,7 +45,7 @@ export default function Projects() {
         }}
         breakpoints={{
           768: { slidesPerView: 1.3 },
-          1024: { slidesPerView: 1.6 },
+          1024: { slidesPerView: 1.5 },
         }}
         className="max-w-7xl mx-auto "
       >
@@ -55,7 +55,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="bg-zinc-900 rounded-3xl overflow-hidden shadow-[0_0px_50px_rgba(0,0,0,0.8)]"
+              className="bg-zinc-900 rounded-3xl overflow-hidden shadow-[0_0px_20px_rgba(0,0,0,0.8)]"
             >
               {/* Image */}
               <div className="h-[280px] md:h-[360px]">

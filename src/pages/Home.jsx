@@ -32,8 +32,8 @@ export default function Home() {
             <motion.div
               className="
                 absolute rounded-full
-                w-[420px] h-[420px]
-                md:w-[480px] md:h-[480px]
+                w-[318px] h-[318px]
+                md:w-[460px] md:h-[460px]
                 lg:w-[520px] lg:h-[520px]
                 p-[3px]
               "
@@ -57,7 +57,7 @@ export default function Home() {
               alt="Profile"
               className="
                 relative z-10
-                w-80 h-80
+                w-70 h-70
                 md:w-96 md:h-96
                 lg:w-[420px] lg:h-[420px]
                 object-cover

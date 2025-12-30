@@ -16,9 +16,9 @@ html {
   font-family: "Zen Dots";
   /* font-weight: 400; */
 }
-/* p{
-  font-family: "Rubik";
-} */
+.rubik{
+  font-family: "Rubik" !important;
+}
 
 body {
   background: radial-gradient(

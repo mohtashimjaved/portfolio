@@ -9,7 +9,7 @@ export default function Layout() {
       <main className="flex-1 w-full max-w-7xl mx-auto px-6">
         <Outlet />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
