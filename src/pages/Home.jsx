@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import profile from "../../public/assets/image.webp";
 import { Download, Github, Linkedin } from "lucide-react";
-import AnimatedTitles from "../components/TypingTitles";
 import TypingTitles from "../components/TypingTitles";
 
 
@@ -20,51 +19,62 @@ export default function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center text-center lg:text-left">
 
         {/* IMAGE FIRST (MOBILE) */}
-        <div className="order-1 lg:order-2 flex justify-center">
-          {/* IMAGE + BORDER ANIMATION */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative flex justify-center items-center"
-          >
-            {/* Circular Loader */}
-            <motion.div
-              className="
-                absolute rounded-full
-                w-[318px] h-[318px]
-                md:w-[460px] md:h-[460px]
-                lg:w-[520px] lg:h-[520px]
-                p-[3px]
-              "
-              animate={{ rotate: 360 }}
-              transition={{
-                repeat: Infinity,
-                duration: 16,
-                ease: "linear",
-              }}
-              style={{
-                background:
-                  "conic-gradient(from 0deg, transparent 0%, var(--color-accent) 20%, transparent 40%, var(--color-accent) 60%, transparent 80%, transparent 100%)",
-              }}
-            >
-              <div className="w-full h-full rounded-full bg-bg" />
-            </motion.div>
+        <div className="order-1 md:order-2 flex justify-center">
+          <div className="relative flex items-center justify-center">
 
-            {/* Image */}
+            {/* SOFT BLUE AMBIENT */}
+            <div
+              className="absolute w-[360px] h-[360px] sm:w-[420px] sm:h-[420px]
+      rounded-full bg-blue-500/10 blur-[120px]"
+            />
+
+            {/* DASHED RING */}
+            <svg
+              className="absolute w-[380px] h-[380px] sm:w-[450px] sm:h-[450px]"
+              viewBox="0 0 200 200"
+              fill="none"
+            >
+              <circle
+                cx="100"
+                cy="100"
+                r="85"
+                stroke="#3b82f6"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeDasharray="14 32"
+                opacity="0.85"
+              >
+                {/* CONTINUOUS ROTATION */}
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  from="0 100 100"
+                  to="360 100 100"
+                  dur="45s"
+                  repeatCount="indefinite"
+                />
+
+                {/* SEAMLESS BREATHING EFFECT */}
+                <animate
+                  attributeName="stroke-dasharray"
+                  dur="14s"
+                  repeatCount="indefinite"
+                  calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1"
+                  keySplines="0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1"
+                  values="14 32; 28 32; 42 32; 28 32; 14 32"
+                />
+              </circle>
+            </svg>
+
+            {/* IMAGE */}
             <img
               src={profile}
               alt="Profile"
-              className="
-                relative z-10
-                w-70 h-70
-                md:w-96 md:h-96
-                lg:w-[420px] lg:h-[420px]
-                object-cover
-                rounded-full
-              "
+              className="relative z-10 w-[230px] sm:w-[270px] md:w-[320px]
+      rounded-full object-cover"
             />
-          </motion.div>
+          </div>
         </div>
 
         {/* CONTENT SECOND (MOBILE) */}
@@ -79,7 +89,7 @@ export default function Home() {
             <span className="text-accent">Mohtashim Javed</span>
           </h1>
 
-         <TypingTitles/>
+          <TypingTitles />
 
           <p className="mt-8 max-w-xl text-gray-400 leading-relaxed">
             I craft high-performance, scalable, and visually refined interfaces
