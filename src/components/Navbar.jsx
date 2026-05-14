@@ -43,7 +43,7 @@ export default function Navbar() {
           >
             M
           </motion.div>
-          <span>ohtashim<span className="text-accent">.</span></span>
+          <span>Mohtashim<span className="text-accent">.</span></span>
         </Link>
 
         {/* Desktop Nav */}
