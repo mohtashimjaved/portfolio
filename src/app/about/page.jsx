@@ -6,11 +6,11 @@ import Image from "next/image";
 export default function About() {
   const skills = [
     { name: "Frontend Development", icon: Layout, desc: "React, Next.js, TailwindCSS", color: "text-blue-400", bg: "bg-blue-400/10" },
-    { name: "Backend Development", icon: Server, desc: "Node.js, Express, Python", color: "text-green-400", bg: "bg-green-400/10" },
+    { name: "Backend Development", icon: Server, desc: "Node.js, Express", color: "text-green-400", bg: "bg-green-400/10" },
     { name: "Database Design", icon: Database, desc: "MongoDB, PostgreSQL, Supabase", color: "text-purple-400", bg: "bg-purple-400/10" },
     { name: "Mobile App Dev", icon: Smartphone, desc: "React Native, Expo", color: "text-pink-400", bg: "bg-pink-400/10" },
     { name: "API Integration", icon: Zap, desc: "RESTful APIs, GraphQL", color: "text-yellow-400", bg: "bg-yellow-400/10" },
-    { name: "Clean Code", icon: Code2, desc: "TypeScript, Jest, CI/CD", color: "text-red-400", bg: "bg-red-400/10" },
+    { name: "Clean Code", icon: Code2, desc: "TypeScript, Jest", color: "text-red-400", bg: "bg-red-400/10" },
   ];
 
   return (
@@ -71,11 +71,11 @@ export default function About() {
             
             <div className="grid grid-cols-2 gap-6 mt-10">
               <div className="glass p-4 rounded-2xl border-l-4 border-l-accent">
-                <h4 className="text-3xl font-black text-white">3+</h4>
+                <h4 className="text-3xl font-black text-white">1+</h4>
                 <p className="text-sm text-gray-400 uppercase tracking-wider font-medium">Years Experience</p>
               </div>
               <div className="glass p-4 rounded-2xl border-l-4 border-l-purple-500">
-                <h4 className="text-3xl font-black text-white">40+</h4>
+                <h4 className="text-3xl font-black text-white">10+</h4>
                 <p className="text-sm text-gray-400 uppercase tracking-wider font-medium">Projects Completed</p>
               </div>
             </div>
