@@ -30,7 +30,7 @@ export default function Navbar() {
     <header
       className={clsx(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "glass py-4 shadow-lg shadow-black/50" : "bg-transparent py-6"
+        scrolled ? "bg-[#0b0f19] border-b border-white/5 py-4 shadow-lg shadow-black/50" : "bg-transparent py-6"
       )}
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
@@ -89,7 +89,7 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="absolute top-full left-0 right-0 glass flex flex-col p-6 gap-4 md:hidden border-t border-white/10"
+          className="absolute top-full left-0 right-0 bg-[#0b0f19] flex flex-col p-6 gap-4 md:hidden border-t border-white/10"
         >
           {navLinks.map((link) => (
             <Link
