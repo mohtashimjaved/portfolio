@@ -1,61 +1,52 @@
-import { useEffect, useState } from "react";
-
-const titles = [
-  "Frontend Engineer",
-  "React & Tailwind Specialist",
-  "UI/UX Enthusiast",
-  "Open Source Contributor",
-];
+"use client";
+import { useState, useEffect } from "react";
 
 export default function TypingTitles() {
-  const [text, setText] = useState("");
-  const [titleIndex, setTitleIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [deleting, setDeleting] = useState(false);
-  const [pause, setPause] = useState(false);
+  const titles = [
+    "Full Stack Developer.",
+    "MERN Stack Expert.",
+    "React Native Developer.",
+    "UI/UX Enthusiast."
+  ];
+
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(100);
 
   useEffect(() => {
-    let timeout;
+    let timer;
+    const fullText = titles[currentTitleIndex];
 
-    if (pause) {
-      // Pause at full text before deleting
-      timeout = setTimeout(() => {
-        setPause(false);
-        setDeleting(true);
-      }, 1000); // 1 second pause at full title
+    if (!isDeleting && currentText === fullText) {
+      // Pause at the end
+      timer = setTimeout(() => setIsDeleting(true), 2500);
+    } else if (isDeleting && currentText === "") {
+      setIsDeleting(false);
+      setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+      setTypingSpeed(100); // reset typing speed
     } else {
-      const speed = deleting ? 50 : 100;
-
-      timeout = setTimeout(() => {
-        const currentTitle = titles[titleIndex];
-
-        if (!deleting) {
-          setText(currentTitle.slice(0, charIndex + 1));
-          setCharIndex(charIndex + 1);
-
-          if (charIndex + 1 === currentTitle.length) {
-            // Pause before deletion
-            setPause(true);
-          }
-        } else {
-          setText(currentTitle.slice(0, charIndex - 1));
-          setCharIndex(charIndex - 1);
-
-          if (charIndex - 1 === 0) {
-            setDeleting(false);
-            setTitleIndex((titleIndex + 1) % titles.length);
-          }
-        }
-      }, speed);
+      timer = setTimeout(
+        () => {
+          setCurrentText((prev) =>
+            isDeleting
+              ? fullText.substring(0, prev.length - 1)
+              : fullText.substring(0, prev.length + 1)
+          );
+          setTypingSpeed(isDeleting ? 40 : 100);
+        },
+        typingSpeed
+      );
     }
 
-    return () => clearTimeout(timeout);
-  }, [charIndex, deleting, titleIndex, pause]);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentTitleIndex, titles, typingSpeed]);
 
   return (
-    <p className="mt-4 text-accent text-xl md:text-2xl font-medium h-8 whitespace-nowrap overflow-hidden">
-      {text}
-      <span className="inline-block animate-blink-cursor bg-accent w-[0.65ch] ml-1">&nbsp;</span>
-    </p>
+    <h2 className="text-2xl md:text-3xl font-medium text-gray-300 min-h-[40px]">
+      I am a <span className="text-white font-bold inline-block relative after:content-['|'] after:animate-blink-cursor">
+        {currentText}
+      </span>
+    </h2>
   );
 }
