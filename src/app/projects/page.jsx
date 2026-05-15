@@ -105,8 +105,8 @@ export default function Projects() {
                   <Image 
                     src={currentProject.image} 
                     alt={currentProject.title} 
-                    fill 
-                    className="object-contain p-4 md:p-8" 
+                    fill
+                    className="object-fill" 
                     priority
                   />
                 </motion.div>
