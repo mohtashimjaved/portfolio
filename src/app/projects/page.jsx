@@ -54,10 +54,10 @@ export default function Projects() {
 
                 {/* Tech Stack List */}
                 <div className="flex flex-wrap items-center gap-3 mb-8">
-                  <span className="text-accent font-bold tracking-widest text-sm uppercase">Tech Stack:</span>
+                  <span className="text-accent font-bold tracking-widest text-[18px] uppercase">Tech Stack:</span>
                   <div className="flex flex-wrap gap-2">
                     {currentProject.tech.map((tech, index) => (
-                      <span key={index} className="text-gray-400 text-sm md:text-base">
+                      <span key={index} className="text-gray-400 capitalize text-sm md:text-[18px]">
                         {tech}{index !== currentProject.tech.length - 1 && ","}
                       </span>
                     ))}
