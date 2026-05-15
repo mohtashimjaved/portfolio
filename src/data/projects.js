@@ -19,6 +19,15 @@ export const projects = [
     demo: "https://dealio-site.netlify.app",
   },
   {
+    id: 3,
+    title: "E-commerce Store",
+    description: "An online store built with HTML, CSS, JavaScript and Supabase, featuring cart and checkout functionality.",
+    image: "/assets/projects/e-commerce.webp",
+    tech: ["HTML", "CSS", "Javascript", "Supabase"],
+    github: "https://github.com/mohtashimjaved/dealio-site",
+    demo: "https://dealio-site.netlify.app",
+  },
+  {
     id: 4,
     title: "E-commerce Store",
     description: "An online store built with HTML, CSS, JavaScript and Supabase, featuring cart and checkout functionality.",
@@ -28,7 +37,7 @@ export const projects = [
     demo: "https://dealio-site.netlify.app",
   },
   {
-    id: 3,
+    id: 5,
     title: "Blog Site",
     description: "A Developers Blogs reading website built with React, Shadcn and Tailwind.",
     image: "/assets/projects/blog.webp",
@@ -37,7 +46,7 @@ export const projects = [
     demo: "https://devblog-site.netlify.app",
   },
   {
-    id: 4,
+    id: 6,
     title: "Realtime Chat Site",
     description: "A Realtime Chatting website using HTML, CSS, Javascript and Supabase featuring Realtime functionality.",
     image: "/assets/projects/chat.webp",

@@ -74,6 +74,9 @@ body {
   .preserve-3d {
     transform-style: preserve-3d;
   }
+  .text-outline {
+    -webkit-text-stroke: 1px currentColor;
+  }
   .transform-gpu {
     transform: translate3d(0, 0, 0);
   }
