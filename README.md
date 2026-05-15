@@ -67,6 +67,13 @@ portfolio/
 └── package.json     # Project dependencies and scripts
 ```
 
+## 🌟 Featured Ecosystem Projects
+
+These projects are part of my full-stack development journey and demonstrate different architectural patterns:
+
+- **[Helplytics](https://github.com/mohtashimjaved/helplytics)**: A collaborative problem-solving platform with a robust Express/MongoDB backend and a premium glassmorphism frontend.
+- **[Real Estate Platform](https://github.com/mohtashimjaved/real-estate)**: A high-performance property marketplace built with Next.js 16 and Tailwind CSS 4.
+
 ## 🤝 Connect With Me
 
 - **LinkedIn**: [Mohtashim Javed](https://www.linkedin.com/in/mohtashim-javed-49917a352/)
