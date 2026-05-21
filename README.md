@@ -2,8 +2,6 @@
 
 Welcome to my professional portfolio! This is a high-performance, visually stunning web application built with **Next.js 15**, **Tailwind CSS**, and **Framer Motion**. It showcases my journey, skills, and projects as a Full Stack Developer specializing in the MERN stack and React Native.
 
-![Portfolio Preview](https://api.dicebear.com/7.x/notionists/svg?seed=Mohtashim&backgroundColor=0b0f19)
-
 ## ✨ Key Features
 
 - **Modern & Responsive UI**: A sleek, dark-themed interface built with a mobile-first approach.
