@@ -39,7 +39,7 @@ export default function Home() {
           </h1>
 
           {/* Typing Effect Container */}
-          <div className="h-12 mb-6 w-full flex justify-center lg:justify-start">
+          <div className="mb-6 w-full flex justify-center lg:justify-start">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
