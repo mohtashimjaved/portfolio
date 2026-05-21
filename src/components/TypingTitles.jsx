@@ -43,10 +43,13 @@ export default function TypingTitles() {
   }, [currentText, isDeleting, currentTitleIndex, titles, typingSpeed]);
 
   return (
-    <h2 className="text-2xl md:text-3xl font-medium text-gray-300 min-h-[40px]">
-      I am a <span className="text-white font-bold inline-block relative after:content-['|'] after:animate-blink-cursor">
+    <div className="flex flex-col sm:flex-row items-center gap-2 lg:justify-start justify-center min-h-[64px] sm:min-h-[40px]">
+      <span className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-300">
+        I am a
+      </span>
+      <span className="text-xl sm:text-2xl md:text-3xl text-accent font-bold inline-block relative after:content-['|'] after:text-white after:ml-1 after:animate-blink-cursor">
         {currentText}
       </span>
-    </h2>
+    </div>
   );
 }
