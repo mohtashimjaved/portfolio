@@ -11,6 +11,14 @@ export const projects = [
   },
   {
     id: 2,
+    title: "Full Stack Inventory Management system",
+    description: "Architected a robust full-stack inventory management platform featuring real-time data tracking, automated stock alerts, and a secure dashboard for seamless operations.",
+    image: "/assets/projects/nexustrade.webp",
+    tech: ["Express", "MongoDB", "Next Js", "Node Js"],
+    demo: "https://nexustrade-project.vercel.app",
+  },
+  {
+    id: 3,
     title: "Helplytics Full Stack Project",
     description: "Helplytics is a premium, collaborative problem-solving platform designed for tech enthusiasts and developers to seek assistance, share expertise, and build a reputation within a high-performance community.",
     image: "/assets/projects/helplytics.webp",
@@ -19,7 +27,7 @@ export const projects = [
     demo: "https://helyplytics.vercel.app",
   },
   {
-    id: 3,
+    id: 4,
     title: "Quiz Site",
     description: "A sleek, fast, and interactive Quiz Application built with modern web technologies. This project is designed to provide a seamless user experience for taking quizzes across various categories with real-time scoring.",
     image: "/assets/projects/quiz-app.webp",
@@ -28,7 +36,7 @@ export const projects = [
     demo: "https://arena-quiz.netlify.app",
   },
   {
-    id: 4,
+    id: 5,
     title: "Blog Site",
     description: "A Developers Blogs reading website built with React, Shadcn and Tailwind.",
     image: "/assets/projects/blog.webp",
@@ -37,7 +45,7 @@ export const projects = [
     demo: "https://devblog-site.netlify.app",
   },
   {
-    id: 5,
+    id: 6,
     title: "E-commerce Store",
     description: "An online store built with HTML, CSS, JavaScript and Supabase, featuring cart and checkout functionality.",
     image: "/assets/projects/e-commerce.webp",
@@ -46,7 +54,7 @@ export const projects = [
     demo: "https://dealio-site.netlify.app",
   },
   {
-    id: 6,
+    id: 7,
     title: "Realtime Chat Site",
     description: "A Realtime Chatting website using HTML, CSS, Javascript and Supabase featuring Realtime functionality.",
     image: "/assets/projects/chat.webp",
