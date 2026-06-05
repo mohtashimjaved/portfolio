@@ -15,6 +15,7 @@ export const projects = [
     description: "Architected a robust full-stack inventory management platform featuring real-time data tracking, automated stock alerts, and a secure dashboard for seamless operations.",
     image: "/assets/projects/nexustrade.webp",
     tech: ["Express", "MongoDB", "Next Js", "Node Js"],
+    github: "https://github.com/mohtashimjaved/white-lable-project",
     demo: "https://nexustrade-project.vercel.app",
   },
   {
