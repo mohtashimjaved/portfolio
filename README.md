@@ -155,10 +155,4 @@ The embedded CLI terminal on the home page supports the following commands:
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License**.
-
----
-
 <div align="center">Developed with ❤️ by <strong>Mohtashim Javed</strong></div>
