@@ -13,126 +13,123 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 25);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: "Home", path: "/" },
+    { name: "Overview", path: "/" },
     { name: "Projects", path: "/projects" },
-    { name: "About", path: "/about" },
+    { name: "About & Skills", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center w-full px-4 pt-4 md:pt-6 pointer-events-none">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center w-full px-4 pt-4 md:pt-5 pointer-events-none">
       <div
         className={clsx(
-          "w-full pointer-events-auto transition-all duration-500 ease-out",
+          "w-full pointer-events-auto transition-all duration-400 ease-out",
           scrolled
-            ? "max-w-4xl bg-[#0b0f19]/75 backdrop-blur-2xl border border-white/10 rounded-full py-3 px-6 shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
-            : "max-w-7xl bg-transparent py-4 px-2"
+            ? "max-w-4xl bg-[#080d1b]/85 backdrop-blur-2xl border border-sky-500/20 rounded-full py-2.5 px-6 shadow-[0_16px_40px_-10px_rgba(0,0,0,0.8),0_0_20px_rgba(14,165,233,0.1)]"
+            : "max-w-6xl bg-transparent py-3 px-2"
         )}
       >
         <div className="flex justify-between items-center w-full">
-          {/* Logo */}
-          <Link href="/" className="text-xl md:text-2xl font-black tracking-tighter text-white flex items-center gap-2 group">
-            <motion.div
-              whileHover={{ rotate: 90 }}
-              transition={{ type: "spring", stiffness: 300, damping: 10 }}
-              className="w-8 h-8 rounded-xl bg-gradient-to-tr from-accent to-blue-500 flex items-center justify-center text-black shadow-[0_0_15px_rgba(14,165,233,0.5)] group-hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] transition-shadow"
-            >
-              M
-            </motion.div>
-            <span className="hidden sm:block">
-              Mohtashim<span className="text-accent">.</span>
+          {/* Executive Brand Logo */}
+          <Link
+            href="/"
+            className="flex items-center gap-3 group"
+          >
+            <div className="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-mono font-bold text-xs tracking-tight group-hover:bg-sky-400 group-hover:text-black transition-all shadow-sm">
+              MJ
+            </div>
+            <span className="font-heading font-semibold text-base tracking-tight text-white hidden sm:inline-block">
+              Mohtashim<span className="text-sky-400">.dev</span>
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex gap-2 items-center">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex gap-1 items-center bg-[#0a0f20]/90 p-1 rounded-full border border-sky-500/15 backdrop-blur-md">
             {navLinks.map((link) => {
               const isActive = pathname === link.path;
               return (
                 <Link
                   key={link.name}
                   href={link.path}
-                  className="relative px-5 py-2 text-sm font-medium uppercase tracking-widest rounded-full transition-colors group"
+                  className="relative px-4 py-1.5 text-xs font-medium tracking-wide rounded-full transition-colors"
                 >
-                  <span className={clsx("relative z-10 transition-colors duration-300", isActive ? "text-white" : "text-gray-400 group-hover:text-white")}>
+                  <span
+                    className={clsx(
+                      "relative z-10 transition-colors duration-200",
+                      isActive ? "text-sky-300 font-semibold" : "text-slate-400 hover:text-white"
+                    )}
+                  >
                     {link.name}
                   </span>
-                  
+
                   {isActive && (
                     <motion.div
                       layoutId="nav-pill"
-                      className="absolute inset-0 bg-accent/15 border border-accent/20 rounded-full"
-                      transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                      className="absolute inset-0 bg-sky-500/15 border border-sky-400/30 rounded-full shadow-[0_0_12px_rgba(56,189,248,0.2)]"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
-                  {/* Hover pill */}
-                  <div className={clsx(
-                    "absolute inset-0 bg-white/5 rounded-full scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300",
-                    isActive && "hidden"
-                  )} />
                 </Link>
               );
             })}
           </nav>
 
-          {/* Mobile Nav Toggle */}
-          <button
-            className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white active:scale-95 transition-transform"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <AnimatePresence mode="wait">
-              {isOpen ? (
-                <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                  <X size={20} />
-                </motion.div>
-              ) : (
-                <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                  <Menu size={20} />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </button>
+          {/* Right Action Icons & Status */}
+          <div className="flex items-center gap-3">
+            {/* Live Availability Badge */}
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[11px] font-mono text-emerald-300">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_#34d399]" />
+              <span className="hidden sm:inline">Available for Hire</span>
+              <span className="sm:hidden">Available</span>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle Navigation"
+            >
+              {isOpen ? <X size={16} /> : <Menu size={16} />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute top-full left-4 right-4 mt-4 pointer-events-auto md:hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full left-4 right-4 mt-2 pointer-events-auto md:hidden"
           >
-            <div className="bg-[#0b0f19]/90 backdrop-blur-2xl border border-white/10 rounded-3xl p-4 shadow-[0_20px_40px_rgba(0,0,0,0.7)] flex flex-col gap-2">
-              {navLinks.map((link, i) => {
+            <div className="bg-[#090e1c]/95 backdrop-blur-3xl border border-sky-500/20 rounded-2xl p-4 shadow-2xl flex flex-col gap-1.5">
+              {navLinks.map((link) => {
                 const isActive = pathname === link.path;
                 return (
-                  <motion.div
+                  <Link
                     key={link.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 + 0.1 }}
+                    href={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className={clsx(
+                      "flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all",
+                      isActive
+                        ? "bg-sky-500/15 text-sky-300 font-semibold border border-sky-400/30"
+                        : "text-slate-400 hover:text-white hover:bg-white/5"
+                    )}
                   >
-                    <Link
-                      href={link.path}
-                      onClick={() => setIsOpen(false)}
-                      className={clsx(
-                        "flex items-center w-full px-6 py-4 rounded-2xl text-lg font-bold tracking-wide transition-all",
-                        isActive ? "bg-accent/15 text-accent border border-accent/20" : "text-gray-300 hover:bg-white/5 hover:text-white"
-                      )}
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.div>
+                    <span>{link.name}</span>
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-sky-400 shadow-[0_0_6px_#38bdf8]" />}
+                  </Link>
                 );
               })}
             </div>
