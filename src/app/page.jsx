@@ -130,7 +130,7 @@ export default function Home() {
               I build production-grade web systems and fluid iOS/Android mobile apps with <strong className="text-sky-300 font-semibold">Next.js 16, MERN Stack, and React Native</strong> — pairing clean, maintainable backend architecture with delightful 60fps user experiences.
             </p>
 
-            {/* Human Developer Proof Highlights */}
+            {/* Human Developer Proof Highlights
             <div className="grid grid-cols-3 gap-2 sm:gap-3 py-1 w-full max-w-lg">
               <div className="p-2 sm:p-2.5 rounded-xl bg-white/[0.03] border border-white/8 text-center lg:text-left">
                 <p className="text-sky-400 font-heading font-bold text-sm sm:text-base">10+ Apps</p>
@@ -144,7 +144,7 @@ export default function Home() {
                 <p className="text-indigo-400 font-heading font-bold text-sm sm:text-base">Sub-100ms</p>
                 <p className="text-[10px] sm:text-[11px] font-mono text-slate-400">Fast APIs</p>
               </div>
-            </div>
+            </div> */}
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-1 w-full sm:w-auto">
