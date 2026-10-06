@@ -153,7 +153,7 @@ export default function ProjectModal({ project, onClose }) {
                 onClick={triggerConfetti}
                 className="flex-1 sm:flex-none justify-center px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-400 to-sky-500 text-black font-bold font-heading text-xs flex items-center gap-2 shadow-[0_0_15px_rgba(56,189,248,0.4)] hover:shadow-[0_0_25px_rgba(56,189,248,0.7)] hover:scale-105 active:scale-95 transition-all"
               >
-                <span>Launch Live Demo</span>
+                <span>Live Demo</span>
                 <ExternalLink size={13} />
               </a>
 
