@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, Github, CheckCircle2, Sparkles, Layers } from "lucide-react";
 import Image from "next/image";
@@ -7,55 +7,57 @@ import confetti from "canvas-confetti";
 import { TechIcon } from "./TechLogos";
 
 export default function ProjectModal({ project, onClose }) {
-  // Prevent background scroll when modal is active and support Escape key
+  // Stable ref for onClose so useEffect doesn't re-run on every render
+  const onCloseRef = useRef(onClose);
+  useEffect(() => { onCloseRef.current = onClose; }, [onClose]);
+
   useEffect(() => {
     if (!project) return;
-
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
+      if (e.key === "Escape") onCloseRef.current();
     };
-
     window.addEventListener("keydown", handleKeyDown);
     document.body.style.overflow = "hidden";
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     };
-  }, [project, onClose]);
+  }, [project]); // only re-runs when the project itself changes
 
-  if (!project) return null;
-
-  const triggerConfetti = () => {
+  // Memoized so it doesn't get recreated every render
+  const triggerConfetti = useCallback(() => {
     confetti({
       particleCount: 45,
       spread: 65,
       origin: { y: 0.6 },
       colors: ["#38bdf8", "#818cf8", "#ffffff"],
     });
-  };
+  }, []);
+
+  if (!project) return null;
 
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-2.5 sm:p-4 md:p-6 overflow-hidden">
-        {/* Backdrop */}
+        {/* Backdrop — no backdrop-blur (GPU expensive); use a semi-opaque overlay instead */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
           onClick={onClose}
-          className="fixed inset-0 bg-black/85 backdrop-blur-md"
+          className="fixed inset-0 bg-black/80"
+          style={{ willChange: "opacity" }}
         />
 
-        {/* Modal Window with Proper Sizing & Scrollable Content */}
+        {/* Modal Window */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 15 }}
+          initial={{ opacity: 0, scale: 0.96, y: 12 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          transition={{ duration: 0.22, ease: "easeOut" }}
+          exit={{ opacity: 0, scale: 0.96, y: 12 }}
+          transition={{ duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="relative w-full max-w-2xl lg:max-w-3xl max-h-[92vh] sm:max-h-[88vh] flex flex-col bg-[#0a0f1d] border border-sky-500/25 rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.9),0_0_30px_rgba(14,165,233,0.18)] z-10"
+          style={{ willChange: "transform, opacity" }}
         >
           {/* Header Banner */}
           <div className="relative h-40 sm:h-52 md:h-60 w-full overflow-hidden bg-black shrink-0">
@@ -65,6 +67,7 @@ export default function ProjectModal({ project, onClose }) {
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 672px, 768px"
               className="object-cover object-top"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1d] via-[#0a0f1d]/40 to-transparent" />
 
@@ -78,7 +81,7 @@ export default function ProjectModal({ project, onClose }) {
             </button>
 
             {/* Category Chip */}
-            <div className="absolute top-3 left-3 sm:top-3.5 sm:left-3.5 px-2.5 sm:px-3 py-1 rounded-full bg-[#080d1a]/90 border border-sky-500/30 text-[10px] sm:text-[11px] font-mono font-medium text-sky-300 backdrop-blur-md shadow-md">
+            <div className="absolute top-3 left-3 sm:top-3.5 sm:left-3.5 px-2.5 sm:px-3 py-1 rounded-full bg-[#080d1a]/90 border border-sky-500/30 text-[10px] sm:text-[11px] font-mono font-medium text-sky-300 shadow-md">
               {project.category}
             </div>
           </div>
@@ -127,7 +130,7 @@ export default function ProjectModal({ project, onClose }) {
             {/* Technology Stack Pills */}
             <div className="space-y-2 pt-1">
               <h4 className="text-[11px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider font-mono flex items-center gap-1.5">
-                <Layers size={13} className="text-sky-400 shrink-0" /> Technologies & Frameworks:
+                <Layers size={13} className="text-sky-400 shrink-0" /> Technologies &amp; Frameworks:
               </h4>
               <div className="flex flex-wrap gap-1.5">
                 {project.tech.map((t, idx) => (
@@ -143,7 +146,7 @@ export default function ProjectModal({ project, onClose }) {
             </div>
           </div>
 
-          {/* Sticky/Fixed Footer Actions Bar */}
+          {/* Sticky Footer Actions Bar */}
           <div className="p-3.5 sm:px-6 sm:py-4 bg-[#080d1a] border-t border-sky-500/20 flex flex-wrap items-center justify-between gap-3 shrink-0">
             <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
               <a
